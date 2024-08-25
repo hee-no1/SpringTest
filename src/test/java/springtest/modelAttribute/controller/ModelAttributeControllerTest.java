@@ -8,9 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -25,32 +23,35 @@ class ModelAttributeControllerTest {
     @DisplayName("기본생성자만 있는 경우")
     public void noArgsConstructorTest() throws Exception {
         mockMvc.perform(post("/modelattribute/noargsconstructor")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .content("memberId=admin&pw=1234"))
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .content("name=admin&age=20"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("memberId='admin', pw=1234"));
+                .andExpect(content().string("name='admin', age=20"));
 
     }
 
     @Test
-    @DisplayName("Getter만 있는 경우")
+    @DisplayName("Getter만 있는 경우, 기본생성자 X")
     public void GetterTest() throws Exception {
         mockMvc.perform(post("/modelattribute/getter")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .content("memberId=admin&pw=1234"))
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .content("name=admin&age=20"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("memberId='admin', pw=1234"));
+                .andExpect(content().string("name='admin', age=20"));
 
     }
 
     @Test
-    @DisplayName("Setter만 있는 경우")
+    @DisplayName("Setter만 있는 경우, 기본생성자 X")
     public void SetterTest() throws Exception {
         mockMvc.perform(post("/modelattribute/setter")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .content("memberId=admin&pw=1234"))
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .content("name=admin&age=20"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("memberId='admin', pw=1234"));
+                .andExpect(content().string("name='admin', age=20"));
 
     }
 
@@ -58,10 +59,11 @@ class ModelAttributeControllerTest {
     @DisplayName("기본생성자 & Getter 있는 경우")
     public void noArgsConstructorGetterTest() throws Exception {
         mockMvc.perform(post("/modelattribute/noargsconstructor-getter")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .content("memberId=admin&pw=1234"))
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .content("name=admin&age=20"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("memberId='admin', pw=1234"));
+                .andExpect(content().string("name='admin', age=20"));
     }
 
     @Test
@@ -70,9 +72,9 @@ class ModelAttributeControllerTest {
         mockMvc.perform(post("/modelattribute/noargsconstructor-setter")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .accept(MediaType.APPLICATION_JSON_VALUE)
-                        .content("memberId=admin&pw=1234"))
+                        .content("name=admin&age=20"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("memberId='admin', pw=1234"));
+                .andExpect(content().string("name='admin', age=20"));
     }
 
     @Test
@@ -81,9 +83,9 @@ class ModelAttributeControllerTest {
         mockMvc.perform(post("/modelattribute/allargsconstructor")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .accept(MediaType.APPLICATION_JSON_VALUE)
-                        .content("memberId=admin&pw=1234"))
+                        .content("name=admin&age=20"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("memberId='admin', pw=1234"));
+                .andExpect(content().string("name='admin', age=20"));
     }
 
 }

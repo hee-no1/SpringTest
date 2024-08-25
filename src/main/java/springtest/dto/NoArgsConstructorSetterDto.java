@@ -1,4 +1,4 @@
-package springtest.modelAttribute.dto;
+package springtest.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -6,13 +6,14 @@ import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor
+@Setter
 public class NoArgsConstructorSetterDto {
-    private String memberId;
-    private Integer pw;
+    private String name;
+    private Integer age;
 
     @Override
     public String toString() {
-        return "memberId='" + memberId + '\'' +
-                ", pw=" + pw;
+        return "name='" + name + '\'' +
+                ", age=" + age;
     }
 }

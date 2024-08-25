@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Member {
     @Id
-    private String memberId; //아이디
+    private String name; //아이디
 
     @Column
-    private Integer pw; //비밀번호
+    private Integer age; //비밀번호
 
 }
